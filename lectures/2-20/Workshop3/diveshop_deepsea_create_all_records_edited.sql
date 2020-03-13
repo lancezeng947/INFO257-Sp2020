@@ -325,5 +325,42 @@ INSERT INTO DIVECUST (Customer_No, Name, Street, City, State_Prov, Zip_Postal_Co
         (10004, 'Boyce Codd', '12345 Normal St', 'Plano', 'TX', '75023', 'U.S.A.', '2019-05-31', 'Y'),
         (10005, 'Bernie Warren', '1600 Pennslvania Av', 'Washington', 'DC', '20500', 'U.S.A.', '2019-05-31', 'Y');
 
-INSERT INTO DIVEORDS (Order_No, Customer_No, Sale_Date, No_Of_People, Depart_Date, Return_Date, Destination, VacationCost)
- VALUES (310)
+ALTER TABLE DIVEORDS
+ ADD Deepsea_Cost int(11);
+
+INSERT INTO DIVEORDS (Order_No, Customer_No, Sale_Date, No_Of_People, Depart_Date, Return_Date, Destination, Deepsea_Cost)
+ VALUES (347, 10000, '2019-06-01', 3, '2020-05-15', '2020-05-20', 'Key West', 7500),
+        (348, 10001, '2019-06-09', 1, '2020-05-10', '2020-05-13', 'Fiji', 3000),
+        (349, 10001, '2019-06-09', 2, '2020-05-13', '2020-05-16', 'Fiji', 6000),
+        (350, 10002, '2019-05-30', 3, '2020-05-21', '2020-05-25', 'Great Barrier Reef', 15000),
+        (351, 10002, '2019-05-30', 3, '2020-05-21', '2020-05-25', 'Ningaloo Coast', 15000),
+        (352, 10003, '2019-05-29', 2, '2020-05-20', '2020-05-27', 'Monterey', 14000),
+        (353, 10004, '2019-05-30', 2, '2020-05-20', '2020-05-25', 'New Jersey', 4000),
+        (354, 10005, '2019-05-31', 2, '2020-01-21', '2020-01-24', 'Florida', 20000);
+
+ALTER TABLE DEST
+ ADD Deepsea_cost int(11),
+ ADD Deepsea_loc char(1);
+
+INSERT INTO DEST (Destination_No, Destination_Name, Body_of_Water, Deepsea_cost, Deepsea_loc)
+ VALUES (9,'Key West', 'Caribbean', 7500, 'Y'),
+        (10,'Ningaloo Coast', 'Indian', 15000, 'Y');
+
+DESCRIBE DIVESTOK;
+
+INSERT INTO DIVESTOK(Item_No, Description, Equipment_Class, On_Hand, Reorder_Point, Sale_Price)
+ VALUES (90128, 'Nike Swim Fins', 'Fins', 0, 2, 45)
+
+DESCRIBE DIVEITEM;
+
+INSERT INTO DIVEITEM(Order_No, Item_No, Rental_Sale, Qty, Line_Note)
+ VALUES (347, 90128, 'Sale', 6, 'New Item - Order from Deepsea'),
+        (347, 90058, 'Sale', 3, NULL),
+        (347, 90126, 'Sale', 3, NULL),
+        (350, 90113, 'Sale', 3, NULL),
+        (351, 90094, 'Sale', 7, NULL),
+        (352, 90105, 'Sale', 1, NULL),
+        (352, 90106, 'Sale', 1, NULL);
+
+
+SELECT * FROM DIVECUST;
